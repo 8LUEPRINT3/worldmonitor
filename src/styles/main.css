@@ -972,11 +972,29 @@ body.playback-mode .status-dot {
   font-size: 9px;
   cursor: pointer;
   text-transform: uppercase;
+  position: relative;
+  transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
 .layer-toggle.active {
   color: var(--green);
   border-color: var(--green);
+}
+
+.layer-toggle.auto-hidden {
+  color: var(--text-dim);
+  border-color: rgba(120, 120, 120, 0.6);
+}
+
+.layer-toggle.auto-hidden::after {
+  content: 'AUTO';
+  position: absolute;
+  top: -6px;
+  right: 2px;
+  font-size: 6px;
+  letter-spacing: 0.4px;
+  color: var(--text-dim);
+  opacity: 0.7;
 }
 
 .hotspot {
@@ -1196,6 +1214,7 @@ body.playback-mode .status-dot {
   stroke-width: 1;
   stroke-dasharray: 4, 2;
   animation: pulse-conflict 2s ease-in-out infinite;
+  transition: opacity 0.2s ease;
 }
 
 .conflict-label {
@@ -1225,6 +1244,7 @@ body.playback-mode .status-dot {
   cursor: pointer;
   white-space: nowrap;
   z-index: 55;
+  transition: opacity 0.2s ease;
 }
 
 .conflict-label-overlay:hover {
@@ -1250,6 +1270,7 @@ body.playback-mode .status-dot {
   border-radius: 50%;
   z-index: 40;
   cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .base-marker:hover {
@@ -1365,6 +1386,7 @@ body.playback-mode .status-dot {
   animation: quake-pulse 1.5s ease-in-out infinite;
   cursor: pointer;
   z-index: 45;
+  transition: opacity 0.2s ease;
 }
 
 .earthquake-marker:hover {
@@ -1383,6 +1405,7 @@ body.playback-mode .status-dot {
   text-shadow: 0 0 4px var(--bg), 0 0 8px var(--bg);
   font-weight: bold;
   margin-top: 2px;
+  transition: opacity 0.2s ease;
 }
 
 @keyframes quake-pulse {
@@ -1400,6 +1423,7 @@ body.playback-mode .status-dot {
   border-radius: 2px;
   z-index: 42;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 .nuclear-marker.active {
@@ -1431,6 +1455,7 @@ body.playback-mode .status-dot {
   text-shadow: 0 0 4px var(--bg), 0 0 8px var(--bg);
   font-weight: bold;
   text-transform: uppercase;
+  transition: opacity 0.2s ease;
 }
 
 .nuclear-marker.contested .nuclear-label {
@@ -2309,6 +2334,7 @@ body.playback-mode .status-dot {
 .conflict-click-area {
   position: absolute;
   z-index: 50;
+  transition: opacity 0.2s ease;
 }
 
 /* Map timestamp */
@@ -2704,6 +2730,30 @@ body.playback-mode .status-dot {
 
 .economic-marker:hover .economic-label {
   opacity: 1;
+}
+
+.map-wrapper[data-layer-hidden-bases="true"] .base-marker,
+.map-wrapper[data-layer-hidden-nuclear="true"] .nuclear-marker,
+.map-wrapper[data-layer-hidden-earthquakes="true"] .earthquake-marker,
+.map-wrapper[data-layer-hidden-economic="true"] .economic-marker,
+.map-wrapper[data-layer-hidden-conflicts="true"] .conflicts,
+.map-wrapper[data-layer-hidden-conflicts="true"] .conflict-label-overlay,
+.map-wrapper[data-layer-hidden-conflicts="true"] .conflict-click-area {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.map-wrapper:not([data-labels-hidden-bases="true"]) .base-label,
+.map-wrapper:not([data-labels-hidden-economic="true"]) .economic-label {
+  opacity: 1;
+}
+
+.map-wrapper[data-labels-hidden-bases="true"] .base-label,
+.map-wrapper[data-labels-hidden-nuclear="true"] .nuclear-label,
+.map-wrapper[data-labels-hidden-earthquakes="true"] .earthquake-label,
+.map-wrapper[data-labels-hidden-economic="true"] .economic-label,
+.map-wrapper[data-labels-hidden-conflicts="true"] .conflict-label-overlay {
+  opacity: 0;
 }
 
 .popup-header.economic {

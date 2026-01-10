@@ -51,6 +51,16 @@ interface USTopology extends Topology {
 }
 
 export class MapComponent {
+  private static readonly LAYER_ZOOM_THRESHOLDS: Partial<
+    Record<keyof MapLayers, { minZoom: number; showLabels?: number }>
+  > = {
+    bases: { minZoom: 3, showLabels: 5 },
+    nuclear: { minZoom: 2, showLabels: 4 },
+    conflicts: { minZoom: 1, showLabels: 3 },
+    economic: { minZoom: 2, showLabels: 4 },
+    earthquakes: { minZoom: 1, showLabels: 2 },
+  };
+
   private container: HTMLElement;
   private svg: d3.Selection<SVGSVGElement, unknown, null, undefined>;
   private wrapper: HTMLElement;
@@ -67,6 +77,7 @@ export class MapComponent {
   private onHotspotClick?: (hotspot: Hotspot) => void;
   private onTimeRangeChange?: (range: TimeRange) => void;
   private onLayerChange?: (layer: keyof MapLayers, enabled: boolean) => void;
+  private layerZoomOverrides: Partial<Record<keyof MapLayers, boolean>> = {};
 
   constructor(container: HTMLElement, initialState: MapState) {
     this.container = container;
@@ -1233,6 +1244,16 @@ export class MapComponent {
 
   public toggleLayer(layer: keyof MapLayers): void {
     this.state.layers[layer] = !this.state.layers[layer];
+    if (this.state.layers[layer]) {
+      const thresholds = MapComponent.LAYER_ZOOM_THRESHOLDS[layer];
+      if (thresholds && this.state.zoom < thresholds.minZoom) {
+        this.layerZoomOverrides[layer] = true;
+      } else {
+        delete this.layerZoomOverrides[layer];
+      }
+    } else {
+      delete this.layerZoomOverrides[layer];
+    }
 
     const btn = document.querySelector(`[data-layer="${layer}"]`);
     btn?.classList.toggle('active');
@@ -1413,6 +1434,12 @@ export class MapComponent {
   public enableLayer(layer: keyof MapLayers): void {
     if (!this.state.layers[layer]) {
       this.state.layers[layer] = true;
+      const thresholds = MapComponent.LAYER_ZOOM_THRESHOLDS[layer];
+      if (thresholds && this.state.zoom < thresholds.minZoom) {
+        this.layerZoomOverrides[layer] = true;
+      } else {
+        delete this.layerZoomOverrides[layer];
+      }
       const btn = document.querySelector(`[data-layer="${layer}"]`);
       btn?.classList.add('active');
       this.onLayerChange?.(layer, true);
@@ -1435,6 +1462,39 @@ export class MapComponent {
 
     // Smart label hiding based on zoom level and overlap
     this.updateLabelVisibility(zoom);
+    this.updateZoomLayerVisibility();
+  }
+
+  private updateZoomLayerVisibility(): void {
+    const zoom = this.state.zoom;
+    (Object.keys(MapComponent.LAYER_ZOOM_THRESHOLDS) as (keyof MapLayers)[]).forEach((layer) => {
+      const thresholds = MapComponent.LAYER_ZOOM_THRESHOLDS[layer];
+      if (!thresholds) return;
+
+      const enabled = this.state.layers[layer];
+      const override = Boolean(this.layerZoomOverrides[layer]);
+      const isVisible = enabled && (override || zoom >= thresholds.minZoom);
+      const labelZoom = thresholds.showLabels ?? thresholds.minZoom;
+      const labelsVisible = enabled && zoom >= labelZoom;
+      const hiddenAttr = `data-layer-hidden-${layer}`;
+      const labelsHiddenAttr = `data-labels-hidden-${layer}`;
+
+      if (isVisible) {
+        this.wrapper.removeAttribute(hiddenAttr);
+      } else {
+        this.wrapper.setAttribute(hiddenAttr, 'true');
+      }
+
+      if (labelsVisible) {
+        this.wrapper.removeAttribute(labelsHiddenAttr);
+      } else {
+        this.wrapper.setAttribute(labelsHiddenAttr, 'true');
+      }
+
+      const btn = document.querySelector(`[data-layer="${layer}"]`);
+      const autoHidden = enabled && !override && zoom < thresholds.minZoom;
+      btn?.classList.toggle('auto-hidden', autoHidden);
+    });
   }
 
   private updateLabelVisibility(zoom: number): void {
