@@ -1016,6 +1016,62 @@ const HAPPY_FEEDS: Record<string, Feed[]> = {
   ],
 };
 
+// Women's Rights Monitor variant feeds
+const WOMEN_FEEDS: Record<string, Feed[]> = {
+  rights: [
+    { name: "UN Women", url: rss('https://news.google.com/rss/search?q=site:unwomen.org+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "HRW Women's Rights", url: rss('https://www.hrw.org/topic/womens-rights/feed') },
+    { name: "Amnesty Women", url: rss('https://news.google.com/rss/search?q=site:amnesty.org+women+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Equality Now", url: rss('https://news.google.com/rss/search?q=site:equalitynow.org+when:14d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Center for Reproductive Rights", url: rss('https://news.google.com/rss/search?q=site:reproductiverights.org+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Women's Rights Watch", url: rss('https://news.google.com/rss/search?q="women%27s+rights"+law+OR+ban+OR+protest+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "AWID", url: rss('https://news.google.com/rss/search?q=site:awid.org+when:14d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  news: [
+    { name: "The Guardian Women", url: rss('https://www.theguardian.com/lifeandstyle/women/rss') },
+    { name: "Ms. Magazine", url: rss('https://msmagazine.com/feed/') },
+    { name: "Women's eNews", url: rss('https://news.google.com/rss/search?q="women%27s+rights"+OR+"gender+equality"+news+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Women's Media Center", url: rss('https://news.google.com/rss/search?q=site:womensmediacenter.com+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Al Jazeera Gender", url: rss('https://news.google.com/rss/search?q=site:aljazeera.com+(women+OR+gender)+rights+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "BBC Gender & Identity", url: rss('https://news.google.com/rss/search?q=site:bbc.com+(women+OR+gender+equality)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Reuters Women", url: rss('https://news.google.com/rss/search?q="women%27s+rights"+OR+"gender+equality"+site:reuters.com+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  violence: [
+    { name: "Gender Violence Watch", url: rss('https://news.google.com/rss/search?q=(femicide+OR+"honor+killing"+OR+"domestic+violence"+OR+"gender+violence")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Trafficking & Exploitation", url: rss('https://news.google.com/rss/search?q=("sex+trafficking"+OR+"human+trafficking"+women+OR+"forced+prostitution")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "FGM Monitor", url: rss('https://news.google.com/rss/search?q=("female+genital+mutilation"+OR+FGM+OR+"female+circumcision")+when:14d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Child Marriage Watch", url: rss('https://news.google.com/rss/search?q=("child+marriage"+OR+"child+bride"+OR+"forced+marriage")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Girls Not Brides", url: rss('https://news.google.com/rss/search?q=site:girlsnotbrides.org+when:14d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  laws: [
+    { name: "Women's Law Tracker", url: rss('https://news.google.com/rss/search?q=(women+OR+girls)+(law+OR+legislation+OR+ban+OR+rights+OR+court+ruling)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Reproductive Rights Law", url: rss('https://news.google.com/rss/search?q=("abortion+law"+OR+"reproductive+rights"+OR+"abortion+ban")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Dress Code Laws", url: rss('https://news.google.com/rss/search?q=(hijab+OR+veil+OR+dress+code)+(law+OR+ban+OR+forced+OR+mandatory)+women+when:14d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Women Legal Rights Index", url: rss('https://news.google.com/rss/search?q=("World+Bank"+"women+legal+rights"+OR+"gender+legal+reform")+when:30d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  education: [
+    { name: "Girls Education Watch", url: rss('https://news.google.com/rss/search?q=("girls+education"+OR+"female+education"+OR+"girls+school")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Girls Not Brides Education", url: rss('https://news.google.com/rss/search?q=("girls+banned+school"+OR+"female+students+banned"+OR+"girls+university")+when:14d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "UNICEF Girls", url: rss('https://news.google.com/rss/search?q=site:unicef.org+(girls+OR+women)+education+when:14d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  leadership: [
+    { name: "Women in Power", url: rss('https://news.google.com/rss/search?q=("female+president"+OR+"woman+prime+minister"+OR+"women+parliament"+OR+"women+in+leadership")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Gender Gap Report", url: rss('https://news.google.com/rss/search?q=("gender+gap"+OR+"glass+ceiling"+OR+"women+CEO"+OR+"equal+pay")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Women's Economic Empowerment", url: rss('https://news.google.com/rss/search?q=("women+economic+empowerment"+OR+"women+entrepreneurs"+OR+"microfinance+women")+when:14d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "GIWPS Georgetown", url: rss('https://news.google.com/rss/search?q=site:giwps.georgetown.edu+when:30d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Catalyst", url: rss('https://news.google.com/rss/search?q=site:catalyst.org+women+when:14d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  protest: [
+    { name: "Women Protest Watch", url: rss('https://news.google.com/rss/search?q=(women+OR+girls)+protest+OR+demonstration+OR+march+OR+uprising+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "Women Arrested Activism", url: rss('https://news.google.com/rss/search?q=(women+OR+"female+activist")+arrested+OR+imprisoned+OR+detained+rights+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  health: [
+    { name: "Maternal Health Watch", url: rss('https://news.google.com/rss/search?q=("maternal+health"+OR+"maternal+mortality"+OR+"obstetric+violence"+OR+"reproductive+health")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "WHO Women Health", url: rss('https://news.google.com/rss/search?q=site:who.int+(women+OR+maternal+OR+reproductive)+health+when:14d&hl=en-US&gl=US&ceid=US:en') },
+    { name: "UNFPA", url: rss('https://news.google.com/rss/search?q=site:unfpa.org+when:14d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+};
+
 // Variant-aware exports
 export const FEEDS = SITE_VARIANT === 'tech'
   ? TECH_FEEDS
@@ -1023,7 +1079,9 @@ export const FEEDS = SITE_VARIANT === 'tech'
     ? FINANCE_FEEDS
     : SITE_VARIANT === 'happy'
       ? HAPPY_FEEDS
-      : FULL_FEEDS;
+      : SITE_VARIANT === 'women'
+        ? WOMEN_FEEDS
+        : FULL_FEEDS;
 
 export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: string[] }> = {
   // Full (geopolitical) variant regions
@@ -1056,6 +1114,16 @@ export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: str
   dealsCorpFin: { labelKey: 'header.sourceRegionDeals', feedKeys: ['institutional', 'derivatives'] },
   finRegulation: { labelKey: 'header.sourceRegionFinRegulation', feedKeys: ['regulation'] },
   gulfMena: { labelKey: 'header.sourceRegionGulfMena', feedKeys: ['gccNews'] },
+
+  // Women's Rights Monitor regions
+  womenRights: { labelKey: 'header.sourceRegionWomenRights', feedKeys: ['rights'] },
+  womenNews: { labelKey: 'header.sourceRegionWomenNews', feedKeys: ['news'] },
+  genderViolence: { labelKey: 'header.sourceRegionGenderViolence', feedKeys: ['violence'] },
+  womenLaws: { labelKey: 'header.sourceRegionWomenLaws', feedKeys: ['laws'] },
+  girlsEducation: { labelKey: 'header.sourceRegionGirlsEducation', feedKeys: ['education'] },
+  womenLeadership: { labelKey: 'header.sourceRegionWomenLeadership', feedKeys: ['leadership'] },
+  womenProtest: { labelKey: 'header.sourceRegionWomenProtest', feedKeys: ['protest'] },
+  womenHealth: { labelKey: 'header.sourceRegionWomenHealth', feedKeys: ['health'] },
 };
 
 export const INTEL_SOURCES: Feed[] = [
@@ -1108,7 +1176,21 @@ export const INTEL_SOURCES: Feed[] = [
 ];
 
 // Keywords that trigger alert status - must be specific to avoid false positives
-export const ALERT_KEYWORDS = [
+export const ALERT_KEYWORDS = SITE_VARIANT === 'women' ? [
+  // Critical — immediate rights violations
+  'femicide', 'honor killing', 'forced marriage', 'child bride', 'child marriage',
+  'female genital mutilation', 'FGM', 'sex trafficking', 'trafficking women',
+  'rape as weapon', 'women executed', 'girls banned', 'women arrested',
+  'women stoned', 'acid attack', 'dowry killing', 'bride burning',
+  // High — structural restrictions
+  'abortion ban', 'women banned', 'women prohibited', 'girls school closed',
+  'hijab forced', 'gender apartheid', 'marital rape legal', 'domestic violence law',
+  'reproductive rights', 'women protest', 'female activist detained',
+  'women rights violated', 'gender-based violence', 'sexual violence',
+  // Medium — legislative & social
+  'women rights', 'gender equality', 'gender gap', 'equal pay', 'glass ceiling',
+  'maternal mortality', 'girls education', 'female education', 'women leadership',
+] : [
   'war', 'invasion', 'military', 'nuclear', 'sanctions', 'missile',
   'airstrike', 'drone strike', 'troops deployed', 'armed conflict', 'bombing', 'casualties',
   'ceasefire', 'peace treaty', 'nato', 'coup', 'martial law',

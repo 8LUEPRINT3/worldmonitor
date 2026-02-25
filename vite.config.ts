@@ -117,6 +117,31 @@ const VARIANT_META: Record<string, {
       'Renewable energy dashboard',
     ],
   },
+  women: {
+    title: "Women's Rights Monitor - Global Intelligence on Women's Rights & Freedoms",
+    description:
+      "Real-time global intelligence dashboard tracking women's rights news, gender-based laws, reproductive rights, gender violence, and the fight for equality worldwide.",
+    keywords:
+      "women's rights, gender equality, reproductive rights, gender-based violence, femicide, women laws, abortion rights, female education, child marriage, FGM, gender apartheid, women protest, gender gap, feminist news, women leadership, trafficking women, domestic violence, women rights violations",
+    url: 'https://women.worldmonitor.app/',
+    siteName: "Women's Rights Monitor",
+    shortName: 'WomenMonitor',
+    subject: "Global Intelligence on Women's Rights, Gender Laws, and Freedoms",
+    classification: "Women's Rights Dashboard, Gender Intelligence, Human Rights Tracker",
+    categories: ['news', 'human-rights'],
+    features: [
+      "Women's rights news aggregation",
+      'Gender-based law tracking',
+      'Reproductive rights monitoring',
+      'Gender violence alerts',
+      'Female education access',
+      'Women in leadership tracker',
+      'Child marriage & FGM monitoring',
+      'Protest & resistance tracking',
+      'Country-level rights scoring',
+      'Legislative change alerts',
+    ],
+  },
   finance: {
     title: 'Finance Monitor - Real-Time Markets & Trading Dashboard',
     description: 'Real-time finance and trading dashboard tracking global markets, stock exchanges, central banks, commodities, forex, crypto, and economic indicators worldwide.',
@@ -520,6 +545,14 @@ const RSS_PROXY_ALLOWED_DOMAINS = new Set([
   'news.ycombinator.com',
   // Finance variant
   'www.coindesk.com', 'cointelegraph.com',
+  // Women's Rights Monitor variant
+  'www.unwomen.org', 'www.hrw.org', 'www.amnesty.org', 'www.girlsnotbrides.org',
+  'msmagazine.com', 'womensmediacenter.com', 'www.equalitynow.org',
+  'www.girlsglobe.org', 'www.awid.org', 'giwps.georgetown.edu',
+  'www.womenofcolor.net', 'www.care.org', 'www.globalfundforwomen.org',
+  'www.womenslinkworldwide.org', 'www.feministmajority.org',
+  'www.reproductiverights.org', 'www.plannedparenthood.org',
+  'www.now.org', 'www.catalyst.org', 'www.weforum.org',
   // Happy variant — positive news sources
   'www.goodnewsnetwork.org', 'www.positive.news', 'reasonstobecheerful.world',
   'www.optimistdaily.com', 'www.sunnyskyz.com', 'www.huffpost.com',
